@@ -34,6 +34,20 @@ class SinglyLinkedList:
             last = last.next
         last.next = new_node
     
+    def delete_even_numbers(self):
+        # Handle the head separately if it's an even number
+        while self.head and self.head.data % 2 == 0:
+            self.head = self.head.next
+
+        current = self.head
+
+        # Traverse the list and remove even numbers
+        while current and current.next:
+            if current.next.data % 2 == 0:
+                current.next = current.next.next
+            else:
+                current = current.next
+    
     # Delete a node with specified value
     def delete_node(self, key):
         current = self.head
@@ -120,7 +134,31 @@ class SinglyLinkedList:
                 current.next = current.next.next
             else:
                 current = current.next
-    
+
+    # Remove duplicates from a unsorted list
+    def remove_duplicates(head):
+        if not head:
+            return None
+        seen = set()
+        curr = head
+        seen.add(curr.val)
+        while curr.next:
+            if curr.next.val in seen:
+                curr.next = curr.next.next
+            else:
+                seen.add(curr.next.val)
+                curr = curr.next
+        return head
+
+
+    def find_middle(head):
+        slow = fast = head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow.val
+
+        
     # Reverse the linked list
     def reverse_list(self):
         prev = None
